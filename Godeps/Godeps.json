@@ -1,0 +1,11 @@
+{
+	"ImportPath": "websocker-hub",
+	"GoVersion": "go1.8",
+	"GodepVersion": "v79",
+	"Deps": [
+		{
+			"ImportPath": "golang.org/x/net/websocket",
+			"Rev": "0819898fb4973868bba6de59b6aaad75beea9a6a"
+		}
+	]
+}
