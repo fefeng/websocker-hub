@@ -14,9 +14,9 @@ echo "dir name:" ${dir_name}
 
 mkdir -p ${GOPATH}/src
 
-ln -s  ${src_root} ${GOPATH}/src/uFlow
+ln -s  ${src_root} ${GOPATH}/src/websocker-hub
 
-cd ${GOPATH}/src/uFlow
+cd ${GOPATH}/src/websocker-hub
 echo "change to" `pwd`
 
 

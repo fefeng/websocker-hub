@@ -79,7 +79,7 @@ func noticeMessagetoClient() {
 
 func main() {
 	wsConnPool.websocketConn = make(map[string]*websocket.Conn)
-	port := flag.Int("port", 8886, "websocket porxy port ")
+	port := flag.Int("port", 8887, "websocket porxy port ")
 	flag.Parse()
 
 	fmt.Println("websocket proxy start ... ")
