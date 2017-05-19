@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"log"
 	"net/http"
@@ -10,6 +11,7 @@ import (
 
 	"encoding/json"
 	"io/ioutil"
+	"strconv"
 	"sync"
 )
 
@@ -76,16 +78,20 @@ func noticeMessagetoClient() {
 }
 
 func main() {
-	fmt.Println("websocket proxy start ... ")
 	wsConnPool.websocketConn = make(map[string]*websocket.Conn)
+	port := flag.Int("port", 8886, "websocket porxy port ")
+	flag.Parse()
 
-	http.Handle("/", http.FileServer(http.Dir(".")))
+	fmt.Println("websocket proxy start ... ")
+	fmt.Printf("port:%v", *port)
+
+	http.Handle("/", http.FileServer(http.Dir("./ui")))
 	http.Handle("/v1/socket/ws", websocket.Handler(connection))
 	http.HandleFunc("/v1/socket/notice", notice)
 
 	go noticeMessagetoClient()
 
-	if err := http.ListenAndServe(":1234", nil); err != nil {
+	if err := http.ListenAndServe(":"+strconv.Itoa(*port), nil); err != nil {
 		log.Fatal("ListenAndServe:", err)
 	}
 }

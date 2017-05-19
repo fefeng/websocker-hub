@@ -6,7 +6,38 @@ websocker-hub是一个在微服务架构中，用于集中管理多个web后端�
 - `golang `
 - `code.google.com/p/go.net/websocket`
 
+## 构建并运行
+```sh
+go build 
 
+./main --port=1234
+```
 
-## 使用
+## API
+ws://127.0.0.1:1234/v1/socket/ws
+curl 127.0.0.1:1234/v1/socket/notice -d '{"name":"test"}'
+##
 
+```js
+var sock = null;
+var wsuri = "ws://127.0.0.1:1234/v1/socket/ws"
+window.onload = function () {
+    console.log("window on load");
+    sock = new WebSocket(wsuri);
+    sock.onopen = function () {
+        console.log("connected to " + wsuri);
+    }
+    sock.onclose = function (e) {
+        console.log("connection close ", e.code)
+    }
+    sock.onmessage = function (e) {
+        document.getElementById("message1").value = e.data
+        console.log("message received : " + e.data)
+    }
+}
+
+function send() {
+    var msg = document.getElementById("message").value;
+    sock.send(msg);
+}
+```
