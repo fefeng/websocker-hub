@@ -1,5 +1,5 @@
 var sock = null;
-var wsuri = "ws://127.0.0.1:8887/v1/socket/ws"
+var wsuri = "ws://" + location.host + "/v1/socket/ws"
 window.onload = function () {
     console.log("window on load");
     sock = new WebSocket(wsuri);
